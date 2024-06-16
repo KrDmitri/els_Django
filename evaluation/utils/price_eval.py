@@ -1,18 +1,22 @@
 import numpy as np
-from datetime import date
+from datetime import date, datetime
 
 def get_price(data):
-    n = 1000
-    r = 0.005
-    vol = 0.2646
+    print(data)
 
-    n0 = date.toordinal(date(2021, 9, 17))
-    n1 = date.toordinal(date(2022, 3, 14))
-    n2 = date.toordinal(date(2022, 9, 13))
-    n3 = date.toordinal(date(2023, 3, 14))
-    n4 = date.toordinal(date(2023, 9, 12))
-    n5 = date.toordinal(date(2024, 3, 12))
-    n6 = date.toordinal(date(2024, 9, 13))
+    n = 1000
+    r = float(data['interestRate'])
+    vol = float(data['volatility'])
+
+    redemptionDates = data['redemptionDates']
+
+    n0 = date.toordinal(datetime.strptime(redemptionDates[0], '%Y-%m-%d').date())
+    n1 = date.toordinal(datetime.strptime(redemptionDates[1], '%Y-%m-%d').date())
+    n2 = date.toordinal(datetime.strptime(redemptionDates[2], '%Y-%m-%d').date())
+    n3 = date.toordinal(datetime.strptime(redemptionDates[3], '%Y-%m-%d').date())
+    n4 = date.toordinal(datetime.strptime(redemptionDates[4], '%Y-%m-%d').date())
+    n5 = date.toordinal(datetime.strptime(redemptionDates[5], '%Y-%m-%d').date())
+    n6 = date.toordinal(datetime.strptime(redemptionDates[6], '%Y-%m-%d').date())
 
     check_day = np.array([n1 - n0, n2 - n0, n3 - n0, n4 - n0, n5 - n0, n6 - n0])
     oneyear = 365

@@ -17,7 +17,6 @@ def get_evaluated_price(request):
     if request.method == 'POST':
         print("eval product function called")
         data = json.loads(request.body)
-        print(data)
         ans = get_price(data)
         response_data = {'answer': ans}
 
