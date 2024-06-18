@@ -31,4 +31,4 @@ def health_check(request):
     health_status = {
         'status': 'healthy'
     }
-    return JsonResponse(health_status)
+    return JsonResponse(health_status, status=200)
