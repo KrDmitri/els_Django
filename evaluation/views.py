@@ -25,3 +25,10 @@ def get_evaluated_price(request):
         response["Access-Control-Allow-Methods"] = "POST"  # 허용할 메서드 설정
 
         return response
+
+
+def health_check(request):
+    health_status = {
+        'status': 'healthy'
+    }
+    return JsonResponse(health_status)
