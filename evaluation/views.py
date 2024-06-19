@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 from .utils.price_eval import get_price
+from .models import  ELS_PRODUCT
 
 
 # Create your views here.
@@ -17,7 +18,16 @@ def get_evaluated_price(request):
     if request.method == 'POST':
         print("eval product function called")
         data = json.loads(request.body)
-        ans = get_price(data)
+
+        product_code = data['productCode']
+
+        try:
+            product = ELS_PRODUCT.objects.get(name=product_code)
+            ans = product.value
+        except:
+            ans = get_price(data)
+            ELS_PRODUCT.objects.create(name=product_code, value=ans)
+
         response_data = {'answer': ans}
 
         response = JsonResponse(response_data)
