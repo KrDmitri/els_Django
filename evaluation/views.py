@@ -24,9 +24,11 @@ def get_evaluated_price(request):
         try:
             product = ELS_PRODUCT.objects.get(name=product_code)
             ans = product.value
+            print("use data from DB")
         except:
             ans = get_price(data)
             ELS_PRODUCT.objects.create(name=product_code, value=ans)
+            print("calculate and return data")
 
         response_data = {'answer': ans}
 
