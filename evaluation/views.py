@@ -17,8 +17,9 @@ from .models import  ELS_PRODUCT
 def get_evaluated_price(request):
     if request.method == 'POST':
         print("eval product function called")
-        data = json.loads(request.body)
 
+
+        data = json.loads(request.body)
         product_code = data['productCode']
 
         try:
